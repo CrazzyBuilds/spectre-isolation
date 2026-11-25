@@ -10,7 +10,7 @@ DISQUE=$(pwd)/build/disque.ext4
 MINIBOX=${MINIBOX:-$HOME/Projects/minibox/minibox}
 IMAGE=crazzybuilds/sysinfo-api:0.0.2
 
-NIVEAUX="processus minibox docker qemu firecracker"
+NIVEAUX="processus minibox docker gvisor qemu firecracker"
 
 lancer() {
 	niveau=$1
@@ -33,6 +33,10 @@ lancer() {
 		# runc, le runtime par défaut de Docker.
 		docker run --rm ${DOCKER_NOM:+--name "$DOCKER_NOM"} \
 			-v "$ROOTFS/app/sonde.js:/app/sonde.js:ro" "$IMAGE" "$@" ;;
+	gvisor)
+		# Un conteneur dont les appels système sont interceptés par un noyau
+		# réécrit en Go (le Sentry), qui tourne lui-même comme un processus.
+		gvisor "$@" ;;
 	qemu)
 		# Une VM complète : BIOS, carte mère émulée (q35), son propre noyau.
 		vm_qemu "$(mode_vm "$@")" ;;
@@ -88,6 +92,24 @@ vm_firecracker() {
 	}
 	JSON
 	firecracker --no-api --config-file "$config" </dev/null | grep -E '^(SONDE|INIT) '
+}
+
+# gvisor <commande...> : runsc lit un « bundle OCI », comme runc sous Docker :
+# un dossier racine + un config.json qui décrit le processus et ses montages.
+# On part du modèle de « runsc spec » et on y met notre commande.
+gvisor() {
+	bundle=$(pwd)/build/gvisor
+	mkdir -p "$bundle"
+	printf '127.0.0.1\tlocalhost gvisor\n' >"$bundle/hosts"
+	(cd "$bundle" && rm -f config.json && runsc spec -- "$@")
+	jq --arg r "$ROOTFS" --arg h "$bundle/hosts" '
+		.root = {path: $r, readonly: true}
+		| .hostname = "gvisor"
+		| .process.terminal = false
+		| .process.cwd = "/app"
+		| .mounts += [{destination: "/etc/hosts", type: "bind", source: $h, options: ["rbind", "ro"]}]
+	' "$bundle/config.json" >"$bundle/config.tmp" && mv "$bundle/config.tmp" "$bundle/config.json"
+	runsc --rootless --network=none run --bundle "$bundle" "spectre-$$-$(date +%s%N)"
 }
 
 mediane() { tr ' ' '\n' | grep . | sort -n | awk '{a[NR]=$1} END {print a[int((NR+1)/2)]}'; }

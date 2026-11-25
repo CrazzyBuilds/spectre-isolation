@@ -1,10 +1,12 @@
-{"niveau":"processus","demarrageMs":2,"dontNoyauMs":null,"noyau":"7.2.15-4-omarchy","hostname":"omarchy","distro":"Arch Linux","memoireMo":15326,"cacheMo":5896,"cpus":8,"processus":539,"uptimeNoyauS":12122.53,"statNs":2337}
-{"niveau":"minibox","demarrageMs":9,"dontNoyauMs":null,"noyau":"7.2.15-4-omarchy","hostname":"minibox","distro":"Alpine Linux","memoireMo":15326,"cacheMo":5891,"cpus":8,"processus":2,"uptimeNoyauS":12123.28,"statNs":2312}
-{"niveau":"docker","demarrageMs":423,"dontNoyauMs":null,"noyau":"7.2.15-4-omarchy","hostname":"b32724c50c30","distro":"Alpine Linux","memoireMo":15326,"cacheMo":5904,"cpus":8,"processus":3,"uptimeNoyauS":12128.44,"statNs":2694}
-{"niveau":"qemu","demarrageMs":456,"dontNoyauMs":270,"noyau":"6.1.155+","hostname":"vm","distro":"Alpine Linux","memoireMo":482,"cacheMo":55,"cpus":1,"processus":51,"uptimeNoyauS":0.45,"statNs":2753}
-{"niveau":"firecracker","demarrageMs":155,"dontNoyauMs":60,"noyau":"6.1.155+","hostname":"vm","distro":"Alpine Linux","memoireMo":482,"cacheMo":55,"cpus":1,"processus":53,"uptimeNoyauS":0.26,"statNs":2671}
-{"niveau":"processus","anonMo":14,"fileMo":0}
-{"niveau":"minibox","anonMo":13,"fileMo":0}
-{"niveau":"docker","anonMo":11,"fileMo":0}
-{"niveau":"qemu","anonMo":125,"fileMo":0}
-{"niveau":"firecracker","anonMo":106,"fileMo":0}
+{"niveau":"processus","demarrageMs":2,"dontNoyauMs":null,"noyau":"7.2.15-4-omarchy","hostname":"omarchy","distro":"Arch Linux","memoireMo":15326,"cacheMo":6214,"cpus":8,"processus":553,"uptimeNoyauS":13473.93,"statNs":2452}
+{"niveau":"minibox","demarrageMs":9,"dontNoyauMs":null,"noyau":"7.2.15-4-omarchy","hostname":"minibox","distro":"Alpine Linux","memoireMo":15326,"cacheMo":6217,"cpus":8,"processus":2,"uptimeNoyauS":13474.75,"statNs":2686}
+{"niveau":"docker","demarrageMs":415,"dontNoyauMs":null,"noyau":"7.2.15-4-omarchy","hostname":"32bc1c8e68b6","distro":"Alpine Linux","memoireMo":15326,"cacheMo":6312,"cpus":8,"processus":2,"uptimeNoyauS":13577.48,"statNs":2586}
+{"niveau":"gvisor","demarrageMs":52,"dontNoyauMs":null,"noyau":"4.19.0-gvisor","hostname":"gvisor","distro":"Alpine Linux","memoireMo":15326,"cacheMo":56,"cpus":8,"processus":2,"uptimeNoyauS":0.57,"statNs":7678}
+{"niveau":"qemu","demarrageMs":472,"dontNoyauMs":260,"noyau":"6.1.155+","hostname":"vm","distro":"Alpine Linux","memoireMo":482,"cacheMo":55,"cpus":1,"processus":52,"uptimeNoyauS":0.59,"statNs":2932}
+{"niveau":"firecracker","demarrageMs":154,"dontNoyauMs":70,"noyau":"6.1.155+","hostname":"vm","distro":"Alpine Linux","memoireMo":482,"cacheMo":55,"cpus":1,"processus":53,"uptimeNoyauS":0.26,"statNs":2716}
+{"niveau":"processus","propreMo":14,"anonMo":14,"shmemMo":0}
+{"niveau":"minibox","propreMo":13,"anonMo":13,"shmemMo":0}
+{"niveau":"docker","propreMo":11,"anonMo":11,"shmemMo":0}
+{"niveau":"gvisor","propreMo":40,"anonMo":29,"shmemMo":11}
+{"niveau":"qemu","propreMo":125,"anonMo":125,"shmemMo":0}
+{"niveau":"firecracker","propreMo":106,"anonMo":106,"shmemMo":0}

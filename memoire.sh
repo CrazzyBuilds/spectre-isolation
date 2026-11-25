@@ -6,7 +6,11 @@
 # systemd, celui de minibox ou celui de Docker), et memory.stat y compte :
 #   - anon : la mémoire propre au niveau (tas de Node, et pour une VM toute
 #     la RAM que l'invité a touchée : son noyau, ses processus, son cache) ;
-#   - file : le cache de fichiers de l'hôte imputé à ce cgroup.
+#   - shmem : la mémoire partagée ; gVisor y range la mémoire de l'appli
+#     (un fichier mémoire que le Sentry distribue à ses processus) ;
+#   - propreMo = anon + shmem : ce que ce niveau coûte en propre à l'hôte.
+# On ne compte pas le cache de fichiers (file) : il est imputé au premier
+# cgroup qui a lu le fichier, donc il dépend de l'ordre des mesures.
 # Usage : ./memoire.sh <niveau> [secondes d'attente]
 set -eu
 . ./niveaux.sh
@@ -36,8 +40,8 @@ minibox)
 esac
 
 mo() { awk -v c="$1" '$1 == c {printf "%d", $2 / 1048576}' "$cg/memory.stat"; }
-jq -nc --arg n "$NIVEAU" --argjson a "$(mo anon)" --argjson f "$(mo file)" \
-	'{niveau: $n, anonMo: $a, fileMo: $f}'
+jq -nc --arg n "$NIVEAU" --argjson a "$(mo anon)" --argjson s "$(mo shmem)" \
+	'{niveau: $n, propreMo: ($a + $s), anonMo: $a, shmemMo: $s}'
 
 # Arrêt : cgroup.kill tue d'un coup tous les processus du cgroup.
 if [ "$NIVEAU" = docker ]; then
