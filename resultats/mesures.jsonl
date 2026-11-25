@@ -1,8 +1,8 @@
-{"niveau":"processus","demarrageMs":2,"dontNoyauMs":null,"noyau":"7.2.15-4-omarchy","hostname":"omarchy","distro":"Arch Linux","memoireMo":15326,"cpus":8,"processus":547,"uptimeNoyauS":12098.59,"statNs":2281}
-{"niveau":"minibox","demarrageMs":9,"dontNoyauMs":null,"noyau":"7.2.15-4-omarchy","hostname":"minibox","distro":"Alpine Linux","memoireMo":15326,"cpus":8,"processus":3,"uptimeNoyauS":12022.59,"statNs":2373}
-{"niveau":"docker","demarrageMs":488,"dontNoyauMs":null,"noyau":"7.2.15-4-omarchy","hostname":"7c69fa2f4833","distro":"Alpine Linux","memoireMo":15326,"cpus":8,"processus":2,"uptimeNoyauS":12028.3,"statNs":2550}
-{"niveau":"qemu","demarrageMs":462,"dontNoyauMs":260,"noyau":"6.1.155+","hostname":"vm","distro":"Alpine Linux","memoireMo":482,"cpus":1,"processus":51,"uptimeNoyauS":0.46,"statNs":2714}
-{"niveau":"firecracker","demarrageMs":157,"dontNoyauMs":60,"noyau":"6.1.155+","hostname":"vm","distro":"Alpine Linux","memoireMo":482,"cpus":1,"processus":53,"uptimeNoyauS":0.28,"statNs":2847}
+{"niveau":"processus","demarrageMs":2,"dontNoyauMs":null,"noyau":"7.2.15-4-omarchy","hostname":"omarchy","distro":"Arch Linux","memoireMo":15326,"cacheMo":5896,"cpus":8,"processus":539,"uptimeNoyauS":12122.53,"statNs":2337}
+{"niveau":"minibox","demarrageMs":9,"dontNoyauMs":null,"noyau":"7.2.15-4-omarchy","hostname":"minibox","distro":"Alpine Linux","memoireMo":15326,"cacheMo":5891,"cpus":8,"processus":2,"uptimeNoyauS":12123.28,"statNs":2312}
+{"niveau":"docker","demarrageMs":423,"dontNoyauMs":null,"noyau":"7.2.15-4-omarchy","hostname":"b32724c50c30","distro":"Alpine Linux","memoireMo":15326,"cacheMo":5904,"cpus":8,"processus":3,"uptimeNoyauS":12128.44,"statNs":2694}
+{"niveau":"qemu","demarrageMs":456,"dontNoyauMs":270,"noyau":"6.1.155+","hostname":"vm","distro":"Alpine Linux","memoireMo":482,"cacheMo":55,"cpus":1,"processus":51,"uptimeNoyauS":0.45,"statNs":2753}
+{"niveau":"firecracker","demarrageMs":155,"dontNoyauMs":60,"noyau":"6.1.155+","hostname":"vm","distro":"Alpine Linux","memoireMo":482,"cacheMo":55,"cpus":1,"processus":53,"uptimeNoyauS":0.26,"statNs":2671}
 {"niveau":"processus","anonMo":14,"fileMo":0}
 {"niveau":"minibox","anonMo":13,"fileMo":0}
 {"niveau":"docker","anonMo":11,"fileMo":0}

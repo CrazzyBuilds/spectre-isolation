@@ -29,6 +29,9 @@ async function main() {
       hostname: os.hostname(),
       distro: osInfo.distro,
       memoireMo: Math.round(mem.total / 2 ** 20),
+      // Le cache de fichiers du noyau vu par la sonde : celui de l'hôte (partagé
+      // par tous les conteneurs) ou celui, propre, du noyau invité d'une VM.
+      cacheMo: Math.round(mem.buffcache / 2 ** 20),
       cpus: cpu.cores,
       processus: procs.all,
       // Depuis combien de temps le noyau vu par la sonde tourne : quelques
