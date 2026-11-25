@@ -8,16 +8,20 @@ mount -t sysfs sysfs /sys
 mount -t devtmpfs devtmpfs /dev
 # La console série : c'est par là que la sortie remonte jusqu'à l'hôte.
 exec >/dev/ttyS0 2>&1 </dev/null
+# Temps écoulé depuis le démarrage du noyau jusqu'ici (/proc/uptime).
+echo "INIT $(cut -d' ' -f1 /proc/uptime)"
 
 # Le disque est en lecture seule : chaque démarrage repart du même état.
 # /etc/hosts (qui déclare le nom "vm") est écrit à la construction du disque.
 hostname vm
 
-# Le mode est passé sur la ligne de commande du noyau : sonde=1 lance la
-# sonde, sinon on s'arrête aussitôt (mesure du démarrage à vide).
-if grep -q 'sonde=1' /proc/cmdline; then
-	cd /app && echo "SONDE $(node sonde.js)"
-fi
+# Le mode est passé sur la ligne de commande du noyau (mode=...) :
+#   sonde : lance la sonde ; api : lance l'API (mesure de la mémoire) ;
+#   vide  : s'arrête aussitôt (mesure du démarrage à vide).
+case "$(sed -n 's/.*mode=\([a-z]*\).*/\1/p' /proc/cmdline)" in
+sonde) cd /app && echo "SONDE $(node sonde.js)" ;;
+api) cd /app && node dist/index.js ;;
+esac
 echo "FIN"
 
 # Éteint la machine (pas de systemd pour le faire : on parle au noyau).
