@@ -1,0 +1,25 @@
+#!/bin/sh
+# Premier processus (PID 1) des machines virtuelles. Dans une VM, personne ne
+# prépare l'environnement à notre place : c'est à nous de monter /proc, /sys,
+# /dev, comme le fait systemd sur une vraie machine.
+
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+mount -t devtmpfs devtmpfs /dev
+# La console série : c'est par là que la sortie remonte jusqu'à l'hôte.
+exec >/dev/ttyS0 2>&1 </dev/null
+
+# Le disque est en lecture seule : chaque démarrage repart du même état.
+# /etc/hosts (qui déclare le nom "vm") est écrit à la construction du disque.
+hostname vm
+
+# Le mode est passé sur la ligne de commande du noyau : sonde=1 lance la
+# sonde, sinon on s'arrête aussitôt (mesure du démarrage à vide).
+if grep -q 'sonde=1' /proc/cmdline; then
+	cd /app && echo "SONDE $(node sonde.js)"
+fi
+echo "FIN"
+
+# Éteint la machine (pas de systemd pour le faire : on parle au noyau).
+sync
+reboot -f

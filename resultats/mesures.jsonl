@@ -1,3 +1,4 @@
 {"niveau":"processus","demarrageMs":2,"noyau":"7.2.15-4-omarchy","hostname":"omarchy","distro":"Arch Linux","memoireMo":15326,"cpus":8,"processus":502,"uptimeNoyauS":11002.93,"statNs":1765}
 {"niveau":"minibox","demarrageMs":7,"noyau":"7.2.15-4-omarchy","hostname":"minibox","distro":"Alpine Linux","memoireMo":15326,"cpus":8,"processus":2,"uptimeNoyauS":11003.53,"statNs":2362}
 {"niveau":"docker","demarrageMs":402,"noyau":"7.2.15-4-omarchy","hostname":"d67385afe983","distro":"Alpine Linux","memoireMo":15326,"cpus":8,"processus":3,"uptimeNoyauS":11008.49,"statNs":2638}
+{"niveau":"qemu","demarrageMs":466,"noyau":"6.1.155+","hostname":"vm","distro":"Alpine Linux","memoireMo":482,"cpus":1,"processus":51,"uptimeNoyauS":0.46,"statNs":2810}
