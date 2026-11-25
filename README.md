@@ -1,8 +1,8 @@
 # spectre-isolation
 
 Le même programme (une sonde Node, construite sur l'image `sysinfo-api`), sur
-les mêmes fichiers, lancé à cinq niveaux d'isolation : processus, minibox,
-Docker, micro-VM Firecracker et VM QEMU. On compare ce qu'il voit, son temps de
+les mêmes fichiers, lancé à six niveaux d'isolation : processus, minibox,
+Docker, gVisor, micro-VM Firecracker et VM QEMU. On compare ce qu'il voit, son temps de
 démarrage et la mémoire qu'il coûte à l'hôte.
 
 Résultats, explications et pièges rencontrés : **[FICHE.md](FICHE.md)**.
@@ -17,6 +17,6 @@ Résultats, explications et pièges rencontrés : **[FICHE.md](FICHE.md)**.
 | `memoire.sh <niveau>` | mémoire de l'API au repos, lue dans le cgroup |
 | `resultats/mesures.jsonl` | les mesures de la fiche |
 
-Prérequis : Docker, QEMU, Firecracker, `/dev/kvm` accessible, `jq`,
+Prérequis : Docker, gVisor (`runsc` et son dossier `gvisor-bin/`), QEMU, Firecracker, `/dev/kvm` accessible, `jq`,
 [minibox](https://github.com/CrazzyBuilds/minibox), et le noyau
 `vmlinux-6.1.155` de la CI Firecracker dans `build/noyau/`.
