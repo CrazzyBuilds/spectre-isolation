@@ -17,7 +17,14 @@ lancer() {
 	shift
 	case "$niveau" in
 	processus)
-		# Sur l'hôte, sans aucune isolation (avec le Node de l'hôte).
+		# Sur l'hôte, sans aucune isolation. Pour comparer à armes égales, on
+		# prend le Node de l'image (v20, compilé pour musl) plutôt que celui de
+		# l'hôte : on le lance avec le chargeur de bibliothèques musl du rootfs.
+		if [ "$1" = node ]; then
+			shift
+			set -- "$ROOTFS/lib/ld-musl-x86_64.so.1" \
+				--library-path "$ROOTFS/usr/lib:$ROOTFS/lib" "$ROOTFS/usr/bin/node" "$@"
+		fi
 		(cd "$ROOTFS/app" && exec "$@") ;;
 	minibox)
 		# Namespaces + cgroups, sans root (piste 2).
